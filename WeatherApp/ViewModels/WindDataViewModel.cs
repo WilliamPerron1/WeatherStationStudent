@@ -15,5 +15,12 @@ namespace WeatherApp.ViewModels
 
 
         }
+
+        public double KPHtoMPS(double kmh)
+        {
+            double mps = kmh *1000/3600;
+            mps =Math.Round(mps, 2);
+            return mps;
+        }
     }
 }
