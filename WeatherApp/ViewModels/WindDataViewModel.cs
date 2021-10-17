@@ -39,5 +39,18 @@ namespace WeatherApp.ViewModels
                 throw new NullReferenceException();
             }
         }
+
+        public bool CanGetData()
+        {
+            if (WindDataService == null)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
+        }
     }
 }
