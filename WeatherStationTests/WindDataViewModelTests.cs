@@ -121,11 +121,11 @@ namespace WeatherStationTests
         public void SetWindDataService_WhenExecuted_WindDataServiceIsNotNull()
         {
             // Arrange
-
+            
             // Act       
-
+            _sut.SetWindDataService(new NodeWindDataService());
             // Assert
-
+            Assert.NotNull(_sut.WindDataService);
             /// TODO : git commit -a -m "T06 SetWindDataService_WhenExecuted_WindDataServiceIsNotNull : Done"
         }
 
