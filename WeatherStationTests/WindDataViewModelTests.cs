@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xunit;
 
@@ -102,11 +103,13 @@ namespace WeatherStationTests
         public void CanGetData_WhenServiceIsSet_ReturnsTrue()
         {
             // Arrange
+            
+            // Act
+            _sut.SetWindDataService(new NodeWindDataService());
 
-            // Act       
-
+            var c = _sut.CanGetData();
             // Assert
-
+            Assert.True(c);
             /// TODO : git commit -a -m "T05 CanGetData_WhenServiceIsSet_ReturnsTrue : Done"
         }
 

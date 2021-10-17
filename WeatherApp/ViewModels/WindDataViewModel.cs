@@ -52,5 +52,10 @@ namespace WeatherApp.ViewModels
             }
             
         }
+
+        public void SetWindDataService(IWindDataService windDataService)
+        {
+            WindDataService = windDataService;
+        }
     }
 }
