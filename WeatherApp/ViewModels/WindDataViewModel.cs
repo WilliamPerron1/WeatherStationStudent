@@ -32,12 +32,17 @@ namespace WeatherApp.ViewModels
             return mps;
         }
 
-        public void GetDataCommandFonction(string s)
+        public void GetDataCommandFonction(string c)
         {
             if (WindDataService == null)
             {
                 throw new NullReferenceException();
             }
+
+            Task<WindDataModel> task = Task.Run(() => WindDataService.GetDataAsync());
+            task.Wait();
+
+            CurrentData = task.Result;
         }
 
         public bool CanGetData()

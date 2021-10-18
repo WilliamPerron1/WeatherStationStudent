@@ -1,7 +1,10 @@
-﻿using System;
+﻿using Moq;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
+using System.Threading.Tasks;
+using WeatherApp.Models;
 using WeatherApp.Services;
 using WeatherApp.ViewModels;
 using Xunit;
@@ -137,12 +140,27 @@ namespace WeatherStationTests
         public void GetDataCommand_HaveCurrentDataWhenExecuted_ShouldPass()
         {
             // Arrange
+            
+            Mock<IWindDataService> _myMock = new Mock<IWindDataService>();
+            _myMock.Setup(x => x.GetDataAsync()).Returns(mockIWindDataService());
+            _sut.WindDataService = _myMock.Object;
+
 
             // Act       
-
+            _sut.GetDataCommandFonction("");
             // Assert
-
+            Assert.NotNull(_sut.CurrentData);
             /// TODO : git commit -a -m "T07 GetDataCommand_HaveCurrentDataWhenExecuted_ShouldPass : Done"
+        }
+
+        private async Task<WindDataModel> mockIWindDataService()
+        {
+            WindDataModel WindDataModel = new WindDataModel();
+            WindDataModel.DateTime = DateTime.Now;
+            WindDataModel.Direction = 4316.6;
+            WindDataModel.MeterPerSec = 49.57;
+
+            return WindDataModel;
         }
 
         /// <summary>
